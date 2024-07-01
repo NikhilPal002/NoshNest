@@ -1,8 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-body{
-  background-color: rgb(241, 245, 241);
+*{
+  box-sizing: border-box;
+  font-family: Outfit;
 }
+body{
+  min-height: 100vh;
+}
+.App{
+  width: 80%;
+  margin: auto;
+} 

@@ -6,9 +6,9 @@ const Navbar = () => {
   const [menu, setMenu] = useState("home")
 
   return (
-    <div className='bg-slate-50 shadow-md font-medium'>
+    <div>
       <div className='flex justify-between items-center max-w-6xl mx-auto py-5'>
-        <Link to='/home'>
+        <Link to='/'>
           <h1 className='font-bold text-sm sm:text-xl flex flex-wrap w-36'>
             <span className='text-orange-400'>Nosh</span>
             <span className='text-orange-600'>Nest</span>
