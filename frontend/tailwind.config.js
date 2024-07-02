@@ -15,6 +15,9 @@ export default {
           '100%': { opacity: 1 },
         },
       },
+      gridTemplateColumns: {
+        'footer': '2fr 1fr 1fr',
+      },
     },
   },
   plugins: [

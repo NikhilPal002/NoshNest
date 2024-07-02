@@ -3,7 +3,7 @@ import { assets } from '../assets/assets';
 
 const AppDownload = () => {
     return (
-        <div className='flex flex-col items-center mt-24'>
+        <div className='flex flex-col items-center mt-24' id='app-download'>
             <p className='text-center text-lg sm:text-4xl font-semibold mb-8'>
                 For Better Experience Download <br />NoshNest App
             </p>
