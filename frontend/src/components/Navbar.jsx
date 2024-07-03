@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { assets } from '../assets/assets';
 
-const Navbar = () => {
+const Navbar = ({setShowLogin}) => {
   const [menu, setMenu] = useState('home');
 
   return (
@@ -36,7 +36,7 @@ const Navbar = () => {
             <img src={assets.basket_icon} alt="" className='w-6 sm:w-8' />
             <div className="absolute w-2.5 h-2.5 bg-orange-500 rounded-full top-[-8px] right-[-8px]"></div>
           </div>
-          <button className="bg-transparent text-[#49557e] text-base border border-orange-500 py-2 px-5 rounded-full cursor-pointer transition duration-300 hover:bg-[#fff4f2]">Sign In</button>
+          <button onClick={()=>setShowLogin(true)} className="bg-transparent text-[#49557e] text-base border border-orange-500 py-2 px-5 rounded-full cursor-pointer transition duration-300 hover:bg-[#fff4f2]">Sign In</button>
         </div>
       </div>
     </div>
