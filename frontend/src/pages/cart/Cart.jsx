@@ -1,12 +1,16 @@
 import React, { useContext } from 'react'
 import { StoreContext } from '../../context/StoreContext';
+import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
   const { cartItems, food_list, removeFromCart,getTotalCartAmount } = useContext(StoreContext)
 
+  const navigate = useNavigate()
+
+
   return (
     <div className='mt-20'>
-      <div className='cart-items'>
+      <div>
         <div className='grid grid-cols-[1fr_1.5fr_1fr_1fr_1fr_0.5fr] items-center text-gray-500 text-[max(1vw,12px)]'>
           <p>Items</p>
           <p>Title</p>
@@ -35,9 +39,10 @@ const Cart = () => {
           }
         })}
       </div>
+
       <div className='mt-20 flex justify-between gap-[max(12vw,20px)] flex-col-reverse md:flex-row'>
         <div className='flex-1 flex flex-col gap-5'>
-          <h2>Cart Totals</h2>
+          <h2 className='text-[30px] font-semibold mb-2' >Cart Totals</h2>
           <div>
             <div className='flex justify-between text-gray-700'>
               <p>Subtotal</p>
@@ -46,20 +51,22 @@ const Cart = () => {
             <hr className='my-2' />
             <div className='flex justify-between text-gray-700'>
               <p>Delivery Fee</p>
-              <p>${2}</p>
+              <p>${getTotalCartAmount()===0?0:2}</p>
             </div>
             <hr className='my-2' />
             <div className='flex justify-between text-gray-700'>
-              <p>Total</p>
-              <p>${getTotalCartAmount()+2}</p>
+              <p className='font-bold'>Total</p>
+              <p className='font-bold'>${getTotalCartAmount()===0?0:getTotalCartAmount()+2}</p>
             </div>
           </div>
-          <button className='w-[max(15vw,20px)] p-3 text-white bg-orange-600 rounded-md cursor-pointer'>PROCEED TO CHECKOUT</button>
+          <button className='w-full md:w-[max(15vw,200px)] mt-6 p-3 text-white bg-orange-600 rounded-md cursor-pointer'>
+            PROCEED TO CHECKOUT
+          </button>
         </div>
         <div className='flex-1'>
           <div>
             <p className='text-gray-700'>If you have a promo code, Enter it here</p>
-            <div className='mt-2 flex justify-between items-center bg-gray-400 rounded-md'>
+            <div className='mt-2 flex justify-between items-center bg-gray-200 rounded-md'>
               <input type='text' placeholder='promo code' className='bg-transparent border-none outline-none pl-2' />
               <button className='w-[max(10vw,150px)] p-3 bg-black text-white rounded-md'>Submit</button>
             </div>
