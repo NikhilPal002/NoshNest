@@ -1,13 +1,23 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { assets } from '../assets/assets';
 import { StoreContext } from '../context/StoreContext';
 
-const Navbar = ({setShowLogin}) => {
+const Navbar = ({ setShowLogin }) => {
 
   const [menu, setMenu] = useState('home');
+  const [dropdownVisible, setDropdownVisible] = useState(false);
+  
+  const { getTotalCartAmount, token, setToken } = useContext(StoreContext);
+  
+  const navigate = useNavigate()
+  
+  const logout = () =>{
+    localStorage.removeItem("token");
+    setToken("");
+    navigate('/');
+  }
 
-  const {getTotalCartAmount} = useContext(StoreContext);
 
   return (
     <div>
@@ -38,11 +48,36 @@ const Navbar = ({setShowLogin}) => {
           <img src={assets.search_icon} alt="" className='w-6 sm:w-8' />
           <div className="relative">
             <Link to='/cart'>
-            <img src={assets.basket_icon} alt="" className='w-6 sm:w-8' />
+              <img src={assets.basket_icon} alt="" className='w-6 sm:w-8' />
             </Link>
-            <div className={getTotalCartAmount()===0?"":"absolute w-2.5 h-2.5 bg-orange-500 rounded-full top-[-8px] right-[-8px]"}></div>
+            <div className={getTotalCartAmount() === 0 ? "" : "absolute w-2.5 h-2.5 bg-orange-500 rounded-full top-[-8px] right-[-8px]"}></div>
           </div>
-          <button onClick={()=>setShowLogin(true)} className="bg-transparent text-[#49557e] text-base border border-orange-500 py-2 px-5 rounded-full cursor-pointer transition duration-300 hover:bg-[#fff4f2]">Sign In</button>
+          {!token ? (
+            <button
+              onClick={() => setShowLogin(true)}
+              className="bg-transparent text-[#49557e] text-base border border-orange-500 py-2 px-5 rounded-full cursor-pointer transition duration-300 hover:bg-[#fff4f2]"
+            >
+              Sign In
+            </button>
+          ) : (
+            <div className="relative" onMouseEnter={() => setDropdownVisible(true)} onMouseLeave={() => setDropdownVisible(false)}>
+              <img src={assets.profile_icon} alt="Profile" className="cursor-pointer" />
+              {dropdownVisible && (
+                <ul className="absolute right-0 z-10 flex-col gap-2.5 bg-[#fff2ef] p-3 pr-7 border border-orange-500 rounded-md outline outline-white list-none">
+                  <li className="flex items-center gap-2.5 hover:bg-gray-100 cursor-pointer hover:text-orange-500">
+                    <img src={assets.bag_icon} alt="Orders" className="w-5" />
+                    <p>Orders</p>
+                  </li>
+                  <hr className="border-t border-gray-200" />
+                  <li onClick={logout} className="flex items-center gap-2.5 cursor-pointer hover:text-orange-500 hover:bg-gray-100">
+                    <img src={assets.logout_icon} alt="Logout" className="w-5" />
+                    <p>Logout</p>
+                  </li>
+                </ul>
+              )}
+            </div>
+          )}
+
         </div>
       </div>
     </div>
