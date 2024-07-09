@@ -59,7 +59,7 @@ const Cart = () => {
               <p className='font-bold'>${getTotalCartAmount()===0?0:getTotalCartAmount()+2}</p>
             </div>
           </div>
-          <button className='w-full md:w-[max(15vw,200px)] mt-6 p-3 text-white bg-orange-600 rounded-md cursor-pointer'>
+          <button onClick={()=>navigate('/place-order')} className='w-full md:w-[max(15vw,200px)] mt-6 p-3 text-white bg-orange-600 rounded-md cursor-pointer'>
             PROCEED TO CHECKOUT
           </button>
         </div>
