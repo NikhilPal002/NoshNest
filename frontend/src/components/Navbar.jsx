@@ -64,7 +64,7 @@ const Navbar = ({ setShowLogin }) => {
               <img src={assets.profile_icon} alt="Profile" className="cursor-pointer" />
               {dropdownVisible && (
                 <ul className="absolute right-0 z-10 flex-col gap-2.5 bg-[#fff2ef] p-3 pr-7 border border-orange-500 rounded-md outline outline-white list-none">
-                  <li className="flex items-center gap-2.5 hover:bg-gray-100 cursor-pointer hover:text-orange-500">
+                  <li onClick={()=>navigate('/myorders')} className="flex items-center gap-2.5 hover:bg-gray-100 cursor-pointer hover:text-orange-500">
                     <img src={assets.bag_icon} alt="Orders" className="w-5" />
                     <p>Orders</p>
                   </li>
